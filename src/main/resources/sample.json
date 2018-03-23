@@ -3,45 +3,45 @@
   "entities": [
     {
       "id": "en1",
-      "name": "Item",
+      "name": "item",
       "fields": [
         {
-          "name": "itemCode",
-          "type": "String"
+          "name": "item_code",
+          "type": "string"
         },
         {
           "name": "name",
-          "type": "String"
+          "type": "string"
         },
         {
           "name": "quantity",
-          "type": "Integer"
+          "type": "integer"
         },
         {
-          "name": "unitPrice",
-          "type": "Double"
+          "name": "unit_price",
+          "type": "double"
         },
         {
           "name": "price",
-          "type": "Double"
+          "type": "double"
         }
       ]
     },
     {
       "id": "en2",
-      "name": "Order",
+      "name": "order",
       "fields": [
         {
-          "name": "orderId",
-          "type": "String"
+          "name": "order_id",
+          "type": "string"
         },
         {
-          "name": "customerId",
-          "type": "String"
+          "name": "customer_id",
+          "type": "string"
         },
         {
           "name": "payment",
-          "type": "Double"
+          "type": "double"
         },
         {
           "name": "items",
@@ -56,10 +56,10 @@
       "entity_id": "en2",
       "handler": {
         "type": "command",
-        "name": "CreateOrder"
+        "name": "create_order"
       },
       "events": [
-        "OrderCreated"
+        "order_created"
       ]
     },
     {
@@ -67,10 +67,10 @@
       "entity_id": "en2",
       "handler": {
         "type": "command",
-        "name": "AddItem"
+        "name": "add_item"
       },
       "events": [
-        "ItemAdded"
+        "item_added"
       ]
     },
     {
@@ -78,10 +78,10 @@
       "entity_id": "en2",
       "handler": {
         "type": "command",
-        "name": "FinalizeOrder"
+        "name": "finalize_order"
       },
       "events": [
-        "OrderFinalized"
+        "order_finalized"
       ]
     },
     {
@@ -89,7 +89,7 @@
       "entity_id": "en1",
       "handler": {
         "type": "query",
-        "name": "GetItem"
+        "name": "get_item"
       },
       "events": [
       ]
@@ -99,10 +99,10 @@
       "entity_id": "en1",
       "handler": {
         "type": "command",
-        "name": "AddItem"
+        "name": "add_item"
       },
       "events": [
-        "ItemAdded"
+        "item_added"
       ]
     }
   ]

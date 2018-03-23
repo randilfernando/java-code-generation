@@ -1,7 +1,7 @@
 package ${packageName};
 
-public class ${className} {
+public class ${toCamel(className)} {
 <#list attributes as attribute>
-    private ${attribute.type} ${attribute.name};
+    private ${toCamel(attribute.type)} ${toHeadlessCamel(attribute.name)};
 </#list>
 }
