@@ -11,7 +11,7 @@ import com.grydtech.msstack.modelconverter.microservice.HandlerClassSchema;
 
 import freemarker.template.TemplateException;
 
-import com.alternate.sample.helpers.JavaClassWriter;
+import com.alternate.sample.helpers.ProjectWriter;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,25 +21,34 @@ import java.util.List;
 public class UsingFreemaker {
     public static void main(String[] args) throws URISyntaxException, IOException, TemplateException {
         String pathToStore = "/home/randil/Documents/Projects/Extra/generated/using-freemaker";
-        String basePackage = "com.grydtech.sample";
+        String groupId = "com.grydtech";
+        String version = "0.1.0";
 
         File jsonFile = new File(UsingFreemaker.class.getResource("/sample.json").toURI());
         BusinessModel businessModel = new ModelReaderJackson().readBusinessModel(jsonFile);
         List<MicroServiceModel> microServiceModels = new ModelConverterEntityBased().convertToMicroServiceModel(businessModel);
 
         for (MicroServiceModel microServiceModel: microServiceModels) {
-            String outputPath = pathToStore +
-                    File.separator + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, microServiceModel.getServiceName()) +
-                    File.separator + "src";
-            JavaClassWriter javaClassWriter = new JavaClassWriter(outputPath);
+            String artifactId = microServiceModel.getServiceName();
+
+            String projectPath = pathToStore +
+                    File.separator + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, artifactId);
+            String basePackage = groupId + "." + CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, artifactId).toLowerCase();
+
+            ProjectWriter projectWriter = new ProjectWriter(projectPath);
+
+            projectWriter.writeProjectPom(groupId, artifactId, version);
+
             for (EntityClassSchema entityClass: microServiceModel.getEntityClasses()) {
-                javaClassWriter.writeEntityClass(basePackage, entityClass);
+                projectWriter.writeEntityClass(basePackage, entityClass);
             }
+
             for (EventClassSchema eventClass: microServiceModel.getEventClasses()) {
-                javaClassWriter.writeEventClass(basePackage, eventClass);
+                projectWriter.writeEventClass(basePackage, eventClass);
             }
+
             for (HandlerClassSchema handlerClass: microServiceModel.getHandlers()) {
-                javaClassWriter.writeHandlerClass(basePackage, handlerClass);
+                projectWriter.writeHandlerClass(basePackage, handlerClass);
             }
         }
     }
