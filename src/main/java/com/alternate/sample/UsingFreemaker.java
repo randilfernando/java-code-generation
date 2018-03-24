@@ -20,7 +20,7 @@ import java.util.List;
 
 public class UsingFreemaker {
     public static void main(String[] args) throws URISyntaxException, IOException, TemplateException {
-        String pathToStore = "/home/randil/Documents/Projects/Extra/generated-using-freemaker";
+        String pathToStore = "/home/randil/Documents/Projects/Extra/generated/using-freemaker";
         String basePackage = "com.grydtech.sample";
 
         File jsonFile = new File(UsingFreemaker.class.getResource("/sample.json").toURI());
