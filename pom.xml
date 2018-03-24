@@ -48,7 +48,7 @@
         <dependency>
             <groupId>com.github.msstack</groupId>
             <artifactId>model-converter</artifactId>
-            <version>2205a97f399a1ea7af1eb1274bc8e71c3bd5d0f0</version>
+            <version>dd9434e762b6b3ad1f3e31495e3281ca543544c6</version>
         </dependency>
 
         <!-- templating engine for java -->

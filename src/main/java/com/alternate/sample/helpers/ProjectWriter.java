@@ -53,7 +53,7 @@ public class ProjectWriter {
 
         List<String> importPackages = new ArrayList<>();
 
-        importPackages.add("import java.util.List");
+        importPackages.add("java.util.List");
         importPackages.add(basePackageName + ".events.*");
 
         Map<String, Object> root = new HashMap<>();
