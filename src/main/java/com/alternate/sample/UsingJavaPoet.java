@@ -52,7 +52,7 @@ public class UsingJavaPoet {
         JavaFile anotherClassFile = JavaFile.builder("com.alternate.sample.package2", anotherClass)
                 .build();
 
-        File file = new File("~/Documents/Projects/Extra/generated/using-java-poet");
+        File file = new File("/home/randil/Documents/Projects/Extra/generated/using-java-poet");
         sampleClassFile.writeTo(file);
         anotherClassFile.writeTo(file);
     }
