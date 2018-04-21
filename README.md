@@ -23,7 +23,7 @@ Generate java code by combining template and data model
 </dependency>
 ```
 
-## Issues when generating code
+## Extra
 Multiple case formats use in java programming (eg: Camel case, Headless camel case)  
 Java class names use camel case while method and attributes use headless camel case.  
 [Google guava](https://github.com/google/guava) provide CaseFormat class which can be used to 
