@@ -1,5 +1,5 @@
 # Java Code Generation
-Analyzed main two ways to generate java code programmatically.
+Analyze java code generation.
 
 ## Java Code Based
 Generate java code via execution of some logic.  
