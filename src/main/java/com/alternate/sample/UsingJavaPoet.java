@@ -15,41 +15,49 @@ import java.util.List;
 
 public class UsingJavaPoet {
     public static void main(String[] args) throws IOException {
-        FieldSpec namesField = FieldSpec.builder(ParameterizedTypeName.get(List.class, String.class), "names", Modifier.PRIVATE)
+        FieldSpec namesField = FieldSpec
+                .builder(ParameterizedTypeName.get(List.class, String.class), "names", Modifier.PRIVATE)
                 .build();
 
-        MethodSpec sampleClassConstructor = MethodSpec.constructorBuilder()
+        MethodSpec sampleClassConstructor = MethodSpec
+                .constructorBuilder()
                 .addStatement("this.names = new $T<$T>", ArrayList.class, String.class)
                 .build();
 
-        MethodSpec getNamesMethod = MethodSpec.methodBuilder("getNames")
+        MethodSpec getNamesMethod = MethodSpec
+                .methodBuilder("getNames")
                 .addModifiers(Modifier.PUBLIC)
                 .returns(ParameterizedTypeName.get(List.class, String.class))
                 .addStatement("return this.names")
                 .build();
 
-        TypeSpec sampleClass = TypeSpec.classBuilder("SampleWithJavaPoet")
+        TypeSpec sampleClass = TypeSpec
+                .classBuilder("SampleWithJavaPoet")
                 .addModifiers(Modifier.PUBLIC)
                 .addField(namesField)
                 .addMethod(sampleClassConstructor)
                 .addMethod(getNamesMethod)
                 .build();
 
-        JavaFile sampleClassFile = JavaFile.builder("com.alternate.sample.package1", sampleClass)
+        JavaFile sampleClassFile = JavaFile
+                .builder("com.alternate.sample.package1", sampleClass)
                 .build();
 
         ClassName listClass = ClassName.get("java.util", "List");
         ClassName className = ClassName.get("com.alternate.sample.package1", "SampleWithJavaPoet");
 
-        FieldSpec sampleClassField = FieldSpec.builder(ParameterizedTypeName.get(listClass, className), "sampleClass", Modifier.PRIVATE)
+        FieldSpec sampleClassField = FieldSpec
+                .builder(ParameterizedTypeName.get(listClass, className), "sampleClass", Modifier.PRIVATE)
                 .build();
 
-        TypeSpec anotherClass = TypeSpec.classBuilder("AnotherClassWithJavaPoet")
+        TypeSpec anotherClass = TypeSpec
+                .classBuilder("AnotherClassWithJavaPoet")
                 .addModifiers(Modifier.PUBLIC)
                 .addField(sampleClassField)
                 .build();
 
-        JavaFile anotherClassFile = JavaFile.builder("com.alternate.sample.package2", anotherClass)
+        JavaFile anotherClassFile = JavaFile
+                .builder("com.alternate.sample.package2", anotherClass)
                 .build();
 
         File file = new File("/home/randil/Documents/Projects/Extra/generated/using-java-poet");
